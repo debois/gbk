@@ -52,15 +52,19 @@ def xr(bn,p):
     f,_,row,oq,key=OTHER
     h=f'{f}#b{bn}' if bn in key else f'{U}spilresultater.php?{oq}&amp;round=1&amp;half=1#B{bn}'
     return re.sub(f'{row}|begge rækker|de to rækker',lambda m:f'<a href="{h}">{m[0]}</a>',p,count=1)
-def board(bn,title,top,toplbl,hi,paras):
+def bid(bn,a):
+    if not a: return ''
+    cap,calls=a; c=['']*'WNES'.index(boards[str(bn)]['deal']['dealer'])+list(calls); c+=['']*(-len(c)%4)
+    return suits(f'<p class="lbl">{cap}</p><table class="bid"><thead><tr><th>V</th><th>N</th><th>Ø</th><th>S</th></tr></thead><tbody>'+''.join('<tr>'+''.join(f'<td>{x}</td>' for x in c[i:i+4])+'</tr>' for i in range(0,len(c),4))+'</tbody></table>')
+def board(bn,title,top,toplbl,hi,paras,auction=None):
     ps=''.join(f'<p class="prose">{suits(xr(bn,p))}</p>' for p in paras)
     return (f'<article class="board" id="b{bn}"><header><div><p class="eyebrow">Spil {bn}</p><h3>{title}</h3></div><div class="swing pos">{top}<small>{toplbl}</small></div></header>\n'
-      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}</div><div class="bright">{table(bn,hi)}{ps}</div></div></article>')
+      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}{bid(bn,auction)}</div><div class="bright">{table(bn,hi)}{ps}</div></div></article>')
 OTHER=None
 B=[
 (30,'Storeslem i sidste spil','+1520','Top N-S',{1,5},[
  'Syd har 23 HP og en semi-gående sekskortsfarve, og Nord lægger to esser til. Der er 13 stik fra toppen i både spar og sans: seks spar, to hjerter, ruder es og klørfarven, hvor bonden falder i anden runde. Intet udspil generer.',
- 'Kun to par nåede hele vejen: <b>Henrichsen–Kofoed</b> og <b>Fogel–Guttermann</b>. Ved Fogel–Guttermanns bord åbnede Guttermann med 2♣, og Fogel svarede 2UT, som viser fire kontroller. Guttermann har selv tre af de fire konger, så fire kontroller hos makker måtte være to esser, og han meldte 7UT direkte. Lilleslem gav kun middel eller lidt over: Rosenbaum–Vainers 6UT med overstik (1020) slog 6♠ med 12 stik (980).']),
+ 'Kun to par nåede hele vejen: <b>Henrichsen–Kofoed</b> og <b>Fogel–Guttermann</b>. Ved Fogel–Guttermanns bord åbnede Guttermann med 2♣, og Fogel svarede 2UT, som viser fire kontroller. Guttermann har selv tre af de fire konger, så fire kontroller hos makker måtte være to esser, og han meldte 7UT direkte. Lilleslem gav kun middel eller lidt over: Rosenbaum–Vainers 6UT med overstik (1020) slog 6♠ med 12 stik (980).'],('Meldeforløb, Fogel–Guttermann N-S',['pas','2♣','pas','2UT','pas','7UT','pas','pas','pas'])),
 (13,'Udspillet afgør slemmen','+1430','Top N-S',{4,2},[
  'N-S har 29 HP og otte spar, men to tabere i 6♠: hjerter es og et klørstik. Med åbne kort holder kun et klørudspil fra toppen kontrakten på 11 stik. Alt andet giver 12, fordi klørtaberen forsvinder på hjerterne.',
  'Øst sidder med otte klør til K-D-B og hjerter es. Ved fem af seks borde i spar blev hjerter es spillet ud, og spilfører fik 12 stik. <b>Nord Jørgensen–Suh Nicolaisen</b> var de eneste, der meldte slemmen, og blev belønnet med netop det udspil.',
@@ -132,7 +136,7 @@ out=f'''<!doctype html>
 <li>På nøglespillene viser tallet øverst til højre den bedste N-S-score på spillet. Den lille tabel under diagrammet giver antal stik med åbne kort for hver linje; to tal (f.eks. 11/10) betyder, at det afhænger af, om Nord eller Syd er spilfører.</li>
 <li>Fremhævede rækker i resultattabellerne er de borde, teksten omtaler.</li>
 <li>Resultater, kortfordelinger og tabeller over stik med åbne kort kommer fra <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Danmarks Bridgeforbunds resultatside</a>. Udspilsanalyserne med åbne kort er beregnet med Dealers medfølgende solver.</li>
-<li>Der findes ingen meldeforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne.</li>
+<li>Resultatsiden har ingen meldeforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne. Meldeforløbet i spil 30 er oplyst af spillerne; modstandernes pas er underforstået.</li>
 <li>Navnene følger parrene, da resultatlisten ikke viser, hvem der sad på hvilken plads.</li>
 <li>Et spørgsmålstegn i udspilskolonnen betyder, at det noterede udspil ikke findes på udspillerens hånd. I spil 13 er hjerter es noteret som udspil mod 5<span class="sc">♣</span>×, men esset sidder hos spilfører selv. I spil 23 er spar es noteret mod 4<span class="sh">♥</span> spillet af Nord, men Nord har selv esset.</li>
 </ul></details>{names}

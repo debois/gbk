@@ -52,10 +52,14 @@ def xr(bn,p):
     f,_,row,oq,key=OTHER
     h=f'{f}#b{bn}' if bn in key else f'{U}spilresultater.php?{oq}&amp;round=1&amp;half=1#B{bn}'
     return re.sub(f'{row}|begge rækker|de to rækker',lambda m:f'<a href="{h}">{m[0]}</a>',p,count=1)
-def board(bn,title,top,toplbl,hi,paras):
+def bid(bn,a):
+    if not a: return ''
+    cap,calls=a; c=['']*'WNES'.index(boards[str(bn)]['deal']['dealer'])+list(calls); c+=['']*(-len(c)%4)
+    return suits(f'<p class="lbl">{cap}</p><table class="bid"><thead><tr><th>V</th><th>N</th><th>Ø</th><th>S</th></tr></thead><tbody>'+''.join('<tr>'+''.join(f'<td>{x}</td>' for x in c[i:i+4])+'</tr>' for i in range(0,len(c),4))+'</tbody></table>')
+def board(bn,title,top,toplbl,hi,paras,auction=None):
     ps=''.join(f'<p class="prose">{suits(xr(bn,p))}</p>' for p in paras)
     return (f'<article class="board" id="b{bn}"><header><div><p class="eyebrow">Spil {bn}</p><h3>{title}</h3></div><div class="swing pos">{top}<small>{toplbl}</small></div></header>\n'
-      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}</div><div class="bright">{table(bn,hi)}{ps}</div></div></article>')
+      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}{bid(bn,auction)}</div><div class="bright">{table(bn,hi)}{ps}</div></div></article>')
 B=[
 (5,'Storeslem i spar','+2210','Top N-S',{8,3},[
  'N-S har 31 HP og ni spar. Når trumferne er trukket, er der 13 stik: Nords tabere i hjerter og klør forsvinder på Syds ruder eller trumfes. Det eneste spørgsmål er spar dame.',
