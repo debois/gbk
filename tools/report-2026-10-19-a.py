@@ -89,7 +89,7 @@ B=[
 ST=[(5,'Rolf Fardan – Marianne Nodal',58.3,47.8),(8,'Claus Torben Christensen – Camilla Husted',56.6,52.9),(3,'Søren Debois – Lars Hareskov',52.4,50.8),(4,'Bent Fogel – Erling Guttermann',50.0,50.0),(6,'Eva Rosenbaum – Gert Vainer',49.4,48.9),(1,'Johannes Nord Jørgensen – Lene Suh Nicolaisen',47.6,49.5),(2,'Jørgen Henrichsen – Jannik Kofoed',45.8,49.0),(7,'Maja Ipsen – Jon Ingolfsson',39.9,51.1)]
 MP={5:'98,0',8:'95,0'}
 HAC=(5,'−0,69')
-ROW='A-rækken'; EYE='A-rækken – BLÅ'; OTHER=('2026-10-19-b-raekken-roed.html','B-rækkens rapport','B-rækken','filename=2132/MT491GT1440.XML&amp;tournament=491&amp;section=1',{5,21,11,17,13,23})
+ROW='A-rækken'; EYE='A-rækken'; OTHER=('2026-10-19-b-raekken-roed.html','B-rækkens rapport','B-rækken','filename=2132/MT491GT1440.XML&amp;tournament=491&amp;section=1',{5,21,11,17,13,23})
 LEDE='Fardan–Nodal vandt med 58,3 %, tre point foran Christensen–Husted, og var alene om lilleslemmen i spil 9. Storeslemmen i spil 5 stod, men blev ikke meldt i A-rækken.'
 AFTEN='''<p class="prose"><b>Rolf Fardan – Marianne Nodal</b> vandt med 98 point, tre foran <b>Claus Torben Christensen – Camilla Husted</b>. Vinderne var alene om lilleslemmen i <a href="#b9">spil 9</a> og vandt 3UT med 21 HP i spil 20. De var efter handicap sat til 47,8 % og tog rækkens største handicapgevinst (−0,69).</p>
 <p class="prose">Christensen–Husted fik syv rene toppe, flere end noget andet par, bl.a. som eneste par i udgang i <a href="#b19">spil 19</a>. <b>Søren Debois – Lars Hareskov</b> blev nummer tre med 52,4 % og fik toppen i <a href="#b2">spil 2</a>.</p>

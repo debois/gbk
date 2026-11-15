@@ -91,7 +91,7 @@ B=[
 ST=[(8,'Birgitte Dyrekilde – Benjamin Dyrekilde Sommerlund',73.8,57.0),(5,'Boy Steiner – Susan Thygesen',57.7,43.7),(2,'Christina Egstrup – Bo Veibel Petersen',50.0,54.7),(7,'Ulrik Koks Andreassen – Bente Øxseth',48.8,54.0),(3,'Allan Lind Jensen – Edith Grossman',48.2,48.2),(6,'Nakako Rasmussen – Birgitte Haugaard Jensen',47.6,54.8),(1,'Bente Nielsen – Karin Brix',39.9,45.2),(4,'Karen Meldgaard – Lars Bo Christensen',33.9,42.4)]
 MP={8:'124,0',5:'97,0'}
 HAC=(8,'−1,10')
-ROW='B-rækken'; EYE='B-rækken – RØD'; OTHER=('2026-10-19-a-raekken-blaa.html','A-rækkens rapport','A-rækken','filename=2132/MT491GT1439.XML&amp;tournament=491&amp;section=1',{9,5,7,2,19,21})
+ROW='B-rækken'; EYE='B-rækken'; OTHER=('2026-10-19-a-raekken-blaa.html','A-rækkens rapport','A-rækken','filename=2132/MT491GT1439.XML&amp;tournament=491&amp;section=1',{9,5,7,2,19,21})
 LEDE='Dyrekilde–Dyrekilde Sommerlund vandt med 73,8 % og ti rene toppe, blandt dem aftenens eneste storeslem. Steiner–Thygesen blev nummer to, 14 procentpoint over forventet.'
 AFTEN='''<p class="prose"><b>Birgitte Dyrekilde – Benjamin Dyrekilde Sommerlund</b> vandt med 124 point, 27 foran nummer to. De fik ti rene toppe i 28 spil og meldte både storeslemmen i <a href="#b5">spil 5</a> og lilleslemmen i <a href="#b21">spil 21</a>.</p>
 <p class="prose"><b>Boy Steiner – Susan Thygesen</b> var efter handicap sat til 43,7 % og scorede 57,7 %. De fik toppe på begge linjer, bl.a. i <a href="#b13">spil 13</a> og <a href="#b21">spil 21</a>. <b>Christina Egstrup – Bo Veibel Petersen</b> blev nummer tre på præcis middel og meldte to udgange i sans, som ingen andre fandt: <a href="#b13">spil 13</a> og <a href="#b17">spil 17</a>.</p>

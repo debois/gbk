@@ -106,7 +106,7 @@ out=f'''<!doctype html>
 {css}
 <div class="wrap">
 <header class="top">
-<p class="eyebrow">Gentofte Bridgeklub · A-rækken – BLÅ · Parturnering #495 · Mandag 9. november 2026</p>
+<p class="eyebrow">Gentofte Bridgeklub · A-rækken · Parturnering #495 · Mandag 9. november 2026</p>
 <h1>Mandag aften/åbent hus, 9. november</h1>
 <p class="lede">Henrichsen–Kofoed vandt med 61,3 % og meldte storeslemmen i sidste spil. Koks Andreassen–Øxseth blev aftenens overraskelse på tredjepladsen, ti procentpoint over forventet.</p>
 <div class="matches">{cards}</div>
