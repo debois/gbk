@@ -21,6 +21,7 @@ def rows(bn):
         while j<len(r) and not (' - ' in r[j] or r[j]=='(Oversidder)' or isb(j)): j+=1
         f=[x.replace("\xa0"," ").strip() for x in r[i:j]]; i=j
         if f[0]=='M': continue
+        if f[0]=='P': out.append(dict(ns=ns,ew=ew,decl=None,lead='',tricks='–',score=int(f[-5] or 0),pct=f[-2])); continue
         m=re.match(r'^([NSØV]) (\d)(UT|[♠♥♦♣])( D)?$',f[0]); assert m,f
         out.append(dict(ns=ns,ew=ew,decl=m[1],lvl=m[2],st=m[3],dbl=bool(m[4]),lead=f[1],tricks=int(f[2]),score=int(f[3]),pct=f[6]))
     return out
@@ -34,6 +35,7 @@ def ddt(bn):
     return suits('<table class="dd"><thead><tr><th></th><th>UT</th><th>♠</th><th>♥</th><th>♦</th><th>♣</th></tr></thead><tbody>')+row('N','S','N-S')+row('Ø','V','Ø-V')+'</tbody></table>'
 LEFT={'N':'E','E':'S','S':'W','W':'N'}; SEAT={'N':'N','S':'S','Ø':'E','V':'W'}; SI={'♠':0,'♥':1,'♦':2,'♣':3}
 def lead(bn,r):
+    if not r['decl']: return '–'
     l=r['lead']; d=boards[str(bn)]['deal']; h=d[LEFT[SEAT[r['decl']]]].split('.')
     if not re.match(r'^[♠♥♦♣][2-9TJQKA]$',l) or l[1] not in h[SI[l[0]]]: return '?'
     return l[0]+card(l[1])
@@ -42,7 +44,7 @@ def table(bn,hi):
     o='<div class="tw"><table class="rooms"><thead><tr><th>N-S</th><th>Ø-V</th><th>Kontrakt</th><th>Udspil</th><th class="num">Stik</th><th class="num">Score</th><th class="num">N-S %</th></tr></thead><tbody>'
     for r in rows(bn):
         c='pos' if r['score']>0 else 'neg'
-        k=f'{r["lvl"]}{r["st"]}{"×" if r["dbl"] else ""} {r["decl"]}'
+        k=f'{r["lvl"]}{r["st"]}{"×" if r["dbl"] else ""} {r["decl"]}' if r['decl'] else 'Pas'
         o+=f'<tr{" class=\"hi\"" if (r["ns"] in hi or r["ew"] in hi) else ""}><td>{P[r["ns"]]}</td><td>{P[r["ew"]]}</td><td class="nw">{k}</td><td class="nw">{lead(bn,r)}</td><td class="num">{r["tricks"]}</td><td class="num"><span class="{c}">{num(r["score"])}</span></td><td class="num">{r["pct"]}</td></tr>'
     return suits(o+'</tbody></table></div>')
 def xr(bn,p):
@@ -80,7 +82,8 @@ B=[
  'Marginen er ét stik: tre beter, 500, havde givet Ø-V toppen i stedet. I B-rækken blev 6♠ meldt ved ét bord og gav 12 stik.']),
 ]
 ST=[(5,'Rolf Fardan – Marianne Nodal',58.3,47.8),(8,'Claus Torben Christensen – Camilla Husted',56.6,52.9),(3,'Søren Debois – Lars Hareskov',52.4,50.8),(4,'Bent Fogel – Erling Guttermann',50.0,50.0),(6,'Eva Rosenbaum – Gert Vainer',49.4,48.9),(1,'Johannes Nord Jørgensen – Lene Suh Nicolaisen',47.6,49.5),(2,'Jørgen Henrichsen – Jannik Kofoed',45.8,49.0),(7,'Maja Ipsen – Jon Ingolfsson',39.9,51.1)]
-MP={5:'98,0',8:'95,0',3:'88,0'}
+MP={5:'98,0',8:'95,0'}
+HAC=(5,'−0,69')
 ROW='A-rækken'; EYE='A-rækken – BLÅ'; OTHER=('2026-10-19-b-raekken-roed.html','B-rækkens rapport','B-rækken','filename=2132/MT491GT1440.XML&amp;tournament=491&amp;section=1',{5,21,11,17,13,23})
 LEDE='Fardan–Nodal vandt med 58,3 %, tre point foran Christensen–Husted, og var alene om lilleslemmen i spil 9. Storeslemmen i spil 5 stod, men blev ikke meldt i A-rækken.'
 AFTEN='''<p class="prose"><b>Rolf Fardan – Marianne Nodal</b> vandt med 98 point, tre foran <b>Claus Torben Christensen – Camilla Husted</b>. Vinderne var alene om lilleslemmen i <a href="#b9">spil 9</a> og vandt 3UT med 21 HP i spil 20. De var efter handicap sat til 47,8 % og tog rækkens største handicapgevinst (−0,69).</p>
@@ -96,7 +99,8 @@ LEADS='<li>Et spørgsmålstegn i udspilskolonnen betyder, at det noterede udspil
 dk=lambda x:f'{x:.1f}'.replace('.',',')
 def diff(a,b):
     d=round(a-b,1); return f'<span class="{"pos" if d>0 else "neg" if d<0 else "zero"}">{num(0) if d==0 else ("+" if d>0 else "−")+dk(abs(d))}</span>'
-cards=''.join(f'<div class="match"><p class="eyebrow">{i+1}. plads</p><p class="vs">{n}</p><p class="score"><b>{dk(p)}</b> <span>%</span></p><p class="vp">{MP[k]} MP · forventet {dk(e)} %</p></div>' for i,(k,n,p,e) in enumerate(ST[:3]))
+cards=''.join(f'<div class="match"><p class="eyebrow">{i+1}. plads</p><p class="vs">{n}</p><p class="score"><b>{dk(p)}</b> <span>%</span></p><p class="vp">{MP[k]} MP · forventet {dk(e)} %</p></div>' for i,(k,n,p,e) in enumerate(ST[:2]))
+cards+=''.join(f'<div class="match"><p class="eyebrow">Største handicapgevinst</p><p class="vs">{n}</p><p class="score"><b>{HAC[1]}</b> <span>handicap</span></p><p class="vp">{dk(p)} % · forventet {dk(e)} %</p></div>' for k,n,p,e in ST if k==HAC[0])
 stand=''.join(f'<tr><td class="num">{i+1}</td><td>{n}</td><td class="num">{dk(p)}</td><td class="num">{dk(e)}</td><td class="num">{diff(p,e)}</td></tr>' for i,(k,n,p,e) in enumerate(ST))
 out=f'''<!doctype html>
 <html lang="da">
@@ -112,24 +116,24 @@ out=f'''<!doctype html>
 <h1>Mandag aften, 19. oktober</h1>
 <p class="lede">{LEDE}</p>
 <div class="matches">{cards}</div>
-<p class="src">8 par, Howell, 28 spil, top 6 pr. spil. <a href="{U}resultater.php?{Q}">Resultater</a> · <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Spilresultater</a> · <a href="{U}kortfordeling.php?{Q}">Kortfordeling</a> · <a href="{U}pairhacscore.php?{Q}">Handicapscore</a> · <a href="{OTHER[0]}">{OTHER[1]}</a></p>
-<nav><a href="#aften">Aftenen kort</a><a href="#stilling">Slutstilling</a><a href="#boards">Nøglespil</a><a href="#toppe">Blandede toppe</a><a href="#method">Noter</a></nav>
+<p class="src">8 par, Howell, 28 spil, top 6 pr. spil. <a href="{OTHER[0]}">{OTHER[1]}</a></p>
+<nav><a href="#aften">Aftenen kort</a><a href="#boards">Nøglespil</a><a href="#toppe">I øvrigt</a><a href="#stilling">Slutstilling</a><a href="#method">Noter</a></nav>
 </header>
 <section id="aften"><h2>Aftenen kort</h2>
 {suits(AFTEN)}
 </section>
+<section id="boards"><h2>Nøglespil</h2>
+{chr(10).join(board(*b) for b in B)}
+</section>
+<section id="toppe"><h2>I øvrigt</h2>
+<ul class="prose">
+{suits(TOPPE)}
+</ul></section>
 <section id="stilling"><h2>Slutstilling</h2>
 <div class="tw"><table><thead><tr><th class="num">Plac.</th><th>Par</th><th class="num">%</th><th class="num">Forventet %</th><th class="num">Forskel</th></tr></thead><tbody>{stand}</tbody></table></div>
 <p class="note">Forventet score er beregnet af arrangøren ud fra parrets handicap.</p>
 </section>
-<section id="boards"><h2>Nøglespil</h2>
-{chr(10).join(board(*b) for b in B)}
-</section>
-<section id="toppe"><h2>Blandede toppe</h2>
-<ul class="prose">
-{suits(TOPPE)}
-</ul></section>
-<section id="method"><h2>Noter</h2>
+<details id="method"><summary><h2>Noter</h2></summary>
 <ul class="prose">
 <li>På nøglespillene viser tallet øverst til højre topscoren på spillet, for N-S eller Ø-V som angivet. Den lille tabel under diagrammet giver antal stik med åbne kort for hver linje; to tal (f.eks. 11/10) betyder, at det afhænger af, om Nord eller Syd er spilfører.</li>
 <li>Fremhævede rækker i resultattabellerne er de borde, teksten omtaler.</li>
@@ -139,8 +143,8 @@ out=f'''<!doctype html>
 <li>Der findes ingen meldeforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne.</li>
 <li>Navnene følger parrene, da resultatlisten ikke viser, hvem der sad på hvilken plads.</li>
 {suits(LEADS)}
-</ul></section>
-<footer>De samme kort blev spillet i begge rækker: <a href="{OTHER[0]}">{OTHER[1]}</a>.</footer>
+</ul></details>
+<footer><p>Danmarks Bridgeforbund: <a href="{U}resultater.php?{Q}">Resultater</a> · <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Spilresultater</a> · <a href="{U}kortfordeling.php?{Q}">Kortfordeling</a> · <a href="{U}pairhacscore.php?{Q}">Handicapscore</a></p><p>De samme kort blev spillet i begge rækker: <a href="{OTHER[0]}">{OTHER[1]}</a>.</p><p>Søren Debois, assisteret af Claude Code (Fable 5.2)</p></footer>
 </div>
 </html>
 '''
@@ -150,8 +154,8 @@ def pairs(t):
     for k,n,*_ in ST: t=t.replace(f'<b>{n}</b>',f'<b><a href="{U}personligt_regnskab.php?{Q}&amp;pairno={k}">{n}</a></b>')
     return t
 def sect(t,a,b,f): i=t.index(a); j=t.index(b,i); return t[:i]+f(t[i:j])+t[j:]
-out=sect(out,'<section id="aften">','<section id="stilling">',ext)
-out=sect(out,'<section id="toppe">','<section id="method">',lambda t:pairs(ext(t)))
+out=sect(out,'<section id="aften">','<section id="boards">',ext)
+out=sect(out,'<section id="toppe">','<section id="stilling">',lambda t:pairs(ext(t)))
 open(sys.argv[3],'w',encoding='utf-8').write(out)
 for b in B:
     print(b[0],[(r['ns'],r['ew'],r['lead'],lead(b[0],r)) for r in rows(b[0]) if lead(b[0],r)=='?'], len(rows(b[0])))
