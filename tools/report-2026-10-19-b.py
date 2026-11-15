@@ -99,6 +99,8 @@ TOPPE='''<li><b>Boy Steiner – Susan Thygesen</b> vandt 3UT i spil 7 som Ø-V (
 <li><b>Bente Nielsen – Karin Brix</b> var det eneste par, der meldte og vandt 4♥ på Ø-V-kortene i spil 8 (450).</li>
 <li><b>Karen Meldgaard – Lars Bo Christensen</b> satte 5♦ i spil 4 (100, ren top).</li>'''
 LEADS=''
+GEN='15. november 2026'; NAMES=''
+names=f'<p class="note">{NAMES}</p>' if NAMES else ''
 dk=lambda x:f'{x:.1f}'.replace('.',',')
 def diff(a,b):
     d=round(a-b,1); return f'<span class="{"pos" if d>0 else "neg" if d<0 else "zero"}">{num(0) if d==0 else ("+" if d>0 else "−")+dk(abs(d))}</span>'
@@ -136,7 +138,7 @@ out=f'''<!doctype html>
 <div class="tw"><table><thead><tr><th class="num">Plac.</th><th>Par</th><th class="num">%</th><th class="num">Forventet %</th><th class="num">Forskel</th></tr></thead><tbody>{stand}</tbody></table></div>
 <p class="note">Forventet score er beregnet af arrangøren ud fra parrets handicap.</p>
 </section>
-<details id="method"><summary><h2>Noter</h2></summary>
+<section id="method"><details><summary><h2>Noter</h2></summary>
 <ul class="prose">
 <li>På nøglespillene viser tallet øverst til højre topscoren på spillet, for N-S eller Ø-V som angivet. Den lille tabel under diagrammet giver antal stik med åbne kort for hver linje; to tal (f.eks. 11/10) betyder, at det afhænger af, om Nord eller Syd er spilfører.</li>
 <li>Fremhævede rækker i resultattabellerne er de borde, teksten omtaler.</li>
@@ -146,19 +148,17 @@ out=f'''<!doctype html>
 <li>Der findes ingen meldeforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne.</li>
 <li>Navnene følger parrene, da resultatlisten ikke viser, hvem der sad på hvilken plads.</li>
 {suits(LEADS)}
-</ul></details>
-<footer><p>Danmarks Bridgeforbund: <a href="{U}resultater.php?{Q}">Resultater</a> · <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Spilresultater</a> · <a href="{U}kortfordeling.php?{Q}">Kortfordeling</a> · <a href="{U}pairhacscore.php?{Q}">Handicapscore</a></p><p>De samme kort blev spillet i begge rækker: <a href="{OTHER[0]}">{OTHER[1]}</a>.</p><p>Søren Debois, assisteret af Claude Code (Fable 5.2)</p></footer>
+</ul></details>{names}
+</section>
+<footer><p>Danmarks Bridgeforbund: <a href="{U}resultater.php?{Q}">Resultater</a> · <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Spilresultater</a> · <a href="{U}kortfordeling.php?{Q}">Kortfordeling</a> · <a href="{U}pairhacscore.php?{Q}">Handicapscore</a></p><p>De samme kort blev spillet i begge rækker: <a href="{OTHER[0]}">{OTHER[1]}</a>.</p><p>Genereret {GEN} af Søren Debois, assisteret af Claude Code (Fable 5.2)</p></footer>
 </div>
 </html>
 '''
 KEY={b[0] for b in B}
 def ext(t): return re.sub(r'(?<!">)\b[Ss]pil (\d+)',lambda m:f'<a href="#b{m[1]}">{m[0]}</a>' if int(m[1]) in KEY else f'<a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1#B{m[1]}">{m[0]}</a>',t)
-def pairs(t):
-    for k,n,*_ in ST: t=t.replace(f'<b>{n}</b>',f'<b><a href="{U}personligt_regnskab.php?{Q}&amp;pairno={k}">{n}</a></b>')
-    return t
 def sect(t,a,b,f): i=t.index(a); j=t.index(b,i); return t[:i]+f(t[i:j])+t[j:]
 out=sect(out,'<section id="aften">','<section id="boards">',ext)
-out=sect(out,'<section id="toppe">','<section id="stilling">',lambda t:pairs(ext(t)))
+out=sect(out,'<section id="toppe">','<section id="stilling">',ext)
 open(sys.argv[3],'w',encoding='utf-8').write(out)
 for b in B:
     print(b[0],[(r['ns'],r['ew'],r['lead'],lead(b[0],r)) for r in rows(b[0]) if lead(b[0],r)=='?'], len(rows(b[0])))

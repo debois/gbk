@@ -13,10 +13,10 @@ A report has:
 1. Header: eyebrow line, short headline, two-sentence lede, and three cards: first place, second place, and the pair with the largest handicap gain (lowest Δ-HAC on the handicap page; lower is better).
 2. "Aftenen kort": three short paragraphs on who won and why, linking to the boards.
 3. "Nøglespil": 3 to 7 boards, each with diagram, tricks-with-open-cards table, the full results table and two to four paragraphs.
-4. "I øvrigt": one line each for good results by pairs not otherwise featured. Each pair name links to the pair's scorecard on the official site and each board to that board there.
+4. "I øvrigt": one line each for good results by pairs not otherwise featured. Each board mentioned links to that board on the official site.
 5. "Slutstilling": all pairs with score, expected score from handicap, and the difference.
-6. "Noter", collapsed by default: everything about sources, method and caveats.
-7. Footer: links to the official pages, then the byline.
+6. "Noter", collapsed by default: everything about sources, method and caveats. Below it, always visible, a line telling apart pairs whose short names in the tables could be confused, if any.
+7. Footer: links to the official pages, then generation date and byline.
 
 ## Steps
 
@@ -41,13 +41,13 @@ A report has:
 
    Arguments: the deal in PBN order N E S W; trump (0 ♠, 1 ♥, 2 ♦, 3 ♣, 4 UT); leader (0 N, 1 E, 2 S, 3 W). Output is declarer's tricks for each possible lead. `lib/libdds.a` there is a patched build; the stock one crashes. `err -14` means a hand does not have 13 cards, typically after moving a card by hand; the solver then also writes `dump.txt` to the current directory, so do not run it from the repo.
 
-4. **Write the report.** Copy the newest `tools/report-*.py` to a new file for the new date (one per række, e.g. `report-2026-10-19-a.py`) and replace its data and prose: the query string `Q`, pair names `P`, boards `B`, standings `ST`, matchpoints `MP` for the top two, the handicap-gain pair `HAC` (pair number and Δ-HAC), and the Danish text in the template. If the evening has several rækker, they play the same cards: set `OTHER` to the other report's file name, link label, række name, query string and key boards, and mention in a board's text what happened on it in the other række when that is interesting (a slam bid there and not here, a different strain, a sacrifice). The script links the first "B-rækken", "begge rækker" or "de to rækker" in a board paragraph to that board in the other report, or to the official page if it is not a key board there. Links between reports are relative file names. With one række, set `OTHER=None`. Then:
+4. **Write the report.** Copy the newest `tools/report-*.py` to a new file for the new date (one per række, e.g. `report-2026-10-19-a.py`) and replace its data and prose: the query string `Q`, pair names `P`, boards `B`, standings `ST`, matchpoints `MP` for the top two, the handicap-gain pair `HAC` (pair number and Δ-HAC), today's date `GEN`, the name disambiguation `NAMES` (empty if none), and the Danish text in the template. If the evening has several rækker, they play the same cards: set `OTHER` to the other report's file name, link label, række name, query string and key boards, and mention in a board's text what happened on it in the other række when that is interesting (a slam bid there and not here, a different strain, a sacrifice). The script links the first "B-rækken", "begge rækker" or "de to rækker" in a board paragraph to that board in the other report, or to the official page if it is not a key board there. Links between reports are relative file names. With one række, set `OTHER=None`. Then:
 
    ```
    python3 -I tools/report-YYYY-MM-DD.py "$WORK/boards.json" 2026-11-09-a-raekken-blaa.html YYYY-MM-DD-<række>.html
    ```
 
-   The second argument is an existing report to take the stylesheet from. The script prints, per key board, the rows whose recorded lead is impossible. In "Aftenen kort" and "I øvrigt" it links every "spil N": to the diagram in the report if N is a key board, otherwise to the board on the official page (`spilresultater.php…#BN`). In "I øvrigt" it also links a pair's full name in `<b>` to `personligt_regnskab.php…&pairno=K`, so write names there exactly as in `ST`.
+   The second argument is an existing report to take the stylesheet from. The script prints, per key board, the rows whose recorded lead is impossible. In "Aftenen kort" and "I øvrigt" it links every "spil N": to the diagram in the report if N is a key board, otherwise to the board on the official page (`spilresultater.php…#BN`).
 
 5. **Verify against the site.** After writing, re-check every number and name in the prose against `boards.txt` and the standings: contracts, declarers, tricks, scores, percentages, counts like "fem af seks borde", point counts, suit lengths. The first version of the previous report said nine hearts where there were ten. An earlier AI-written report for Søren's league team had the two pairs' columns swapped and several analytical claims that did not survive a check, so he reads these sceptically.
 

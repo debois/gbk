@@ -83,6 +83,8 @@ B=[
 ST=[(5,'Jørgen Henrichsen – Jannik Kofoed',61.3,53.3),(2,'Eva Rosenbaum – Gert Vainer',59.1,52.0),(9,'Ulrik Koks Andreassen – Bente Øxseth',56.9,47.0),(6,'Rolf Fardan – Marianne Nodal',55.4,51.9),(3,'Maja Ipsen – Jon Ingolfsson',54.0,54.1),(4,'Johannes Nord Jørgensen – Lene Suh Nicolaisen',53.5,52.9),(13,'Mikkel Bruun – Niels Kristian Klausen',52.0,47.6),(10,'Mogens Lind – Marianne Skjøt',50.4,51.3),(7,'Birgitte Dyrekilde – Lill Zeeberg',48.5,53.9),(1,'Bent Fogel – Erling Guttermann',47.5,54.1),(14,'Christian Bruun Rasmussen – Søren Debois',44.2,47.5),(8,'Christina Egstrup – Bo Veibel Petersen',43.8,47.2),(11,'Nakako Rasmussen – Ulla Monberg Aastrup',43.6,44.1),(15,'Bjarke Larsen – Birgitte Haugaard Jensen',43.4,50.6),(12,'Allan Lind Jensen – Edith Grossman',36.0,42.6)]
 MP={5:'220,5',2:'212,8'}
 HAC=(9,'−0,92')
+GEN='15. november 2026'; NAMES='Rasmussen i resultattabellerne er Nakako Rasmussen; Bruun er Mikkel Bruun.'
+names=f'<p class="note">{NAMES}</p>' if NAMES else ''
 dk=lambda x:f'{x:.1f}'.replace('.',',')
 def diff(a,b):
     d=round(a-b,1); return f'<span class="{"pos" if d>0 else "neg" if d<0 else "zero"}">{num(0) if d==0 else ("+" if d>0 else "−")+dk(abs(d))}</span>'
@@ -125,7 +127,7 @@ out=f'''<!doctype html>
 <div class="tw"><table><thead><tr><th class="num">Plac.</th><th>Par</th><th class="num">%</th><th class="num">Forventet %</th><th class="num">Forskel</th></tr></thead><tbody>{stand}</tbody></table></div>
 <p class="note">Forventet score er beregnet af arrangøren ud fra parrets handicap.</p>
 </section>
-<details id="method"><summary><h2>Noter</h2></summary>
+<section id="method"><details><summary><h2>Noter</h2></summary>
 <ul class="prose">
 <li>På nøglespillene viser tallet øverst til højre den bedste N-S-score på spillet. Den lille tabel under diagrammet giver antal stik med åbne kort for hver linje; to tal (f.eks. 11/10) betyder, at det afhænger af, om Nord eller Syd er spilfører.</li>
 <li>Fremhævede rækker i resultattabellerne er de borde, teksten omtaler.</li>
@@ -133,19 +135,17 @@ out=f'''<!doctype html>
 <li>Der findes ingen meldeforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne.</li>
 <li>Navnene følger parrene, da resultatlisten ikke viser, hvem der sad på hvilken plads.</li>
 <li>Et spørgsmålstegn i udspilskolonnen betyder, at det noterede udspil ikke findes på udspillerens hånd. I spil 13 er hjerter es noteret som udspil mod 5<span class="sc">♣</span>×, men esset sidder hos spilfører selv. I spil 23 er spar es noteret mod 4<span class="sh">♥</span> spillet af Nord, men Nord har selv esset.</li>
-</ul></details>
-<footer><p>Danmarks Bridgeforbund: <a href="{U}resultater.php?{Q}">Resultater</a> · <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Spilresultater</a> · <a href="{U}kortfordeling.php?{Q}">Kortfordeling</a> · <a href="{U}pairhacscore.php?{Q}">Handicapscore</a></p><p>Rasmussen i resultattabellerne er Nakako Rasmussen; Bruun er Mikkel Bruun.</p><p>Søren Debois, assisteret af Claude Code (Fable 5.2)</p></footer>
+</ul></details>{names}
+</section>
+<footer><p>Danmarks Bridgeforbund: <a href="{U}resultater.php?{Q}">Resultater</a> · <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Spilresultater</a> · <a href="{U}kortfordeling.php?{Q}">Kortfordeling</a> · <a href="{U}pairhacscore.php?{Q}">Handicapscore</a></p><p>Genereret {GEN} af Søren Debois, assisteret af Claude Code (Fable 5.2)</p></footer>
 </div>
 </html>
 '''
 KEY={b[0] for b in B}
 def ext(t): return re.sub(r'(?<!">)\b[Ss]pil (\d+)',lambda m:f'<a href="#b{m[1]}">{m[0]}</a>' if int(m[1]) in KEY else f'<a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1#B{m[1]}">{m[0]}</a>',t)
-def pairs(t):
-    for k,n,*_ in ST: t=t.replace(f'<b>{n}</b>',f'<b><a href="{U}personligt_regnskab.php?{Q}&amp;pairno={k}">{n}</a></b>')
-    return t
 def sect(t,a,b,f): i=t.index(a); j=t.index(b,i); return t[:i]+f(t[i:j])+t[j:]
 out=sect(out,'<section id="aften">','<section id="boards">',ext)
-out=sect(out,'<section id="toppe">','<section id="stilling">',lambda t:pairs(ext(t)))
+out=sect(out,'<section id="toppe">','<section id="stilling">',ext)
 open(sys.argv[3],'w',encoding='utf-8').write(out)
 for b in B:
     print(b[0],[(r['ns'],r['ew'],r['lead'],lead(b[0],r)) for r in rows(b[0]) if lead(b[0],r)=='?'], len(rows(b[0])))
