@@ -54,12 +54,13 @@ def xr(bn,p):
     return re.sub(f'{row}|begge rækker|de to rækker',lambda m:f'<a href="{h}">{m[0]}</a>',p,count=1)
 def bid(bn,a):
     if not a: return ''
-    cap,calls=a; c=['']*'WNES'.index(boards[str(bn)]['deal']['dealer'])+list(calls); c+=['']*(-len(c)%4)
-    return suits(f'<p class="lbl">{cap}</p><table class="bid"><thead><tr><th>V</th><th>N</th><th>Ø</th><th>S</th></tr></thead><tbody>'+''.join('<tr>'+''.join(f'<td>{x}</td>' for x in c[i:i+4])+'</tr>' for i in range(0,len(c),4))+'</tbody></table>')
+    cap,calls=a; fn=[x[1] for x in calls if isinstance(x,tuple)]; k=iter(range(1,99))
+    c=['']*'WNES'.index(boards[str(bn)]['deal']['dealer'])+[f'{x[0]}<sup>{next(k)}</sup>' if isinstance(x,tuple) else x for x in calls]; c+=['']*(-len(c)%4)
+    return suits(f'<p class="lbl">{cap}</p><table class="bid"><thead><tr><th>V</th><th>N</th><th>Ø</th><th>S</th></tr></thead><tbody>'+''.join('<tr>'+''.join(f'<td>{x}</td>' for x in c[i:i+4])+'</tr>' for i in range(0,len(c),4))+'</tbody></table>'+''.join(f'<p class="src"><sup>{i+1}</sup> {x}</p>' for i,x in enumerate(fn)))
 def board(bn,title,top,toplbl,hi,paras,auction=None):
     ps=''.join(f'<p class="prose">{suits(xr(bn,p))}</p>' for p in paras)
     return (f'<article class="board" id="b{bn}"><header><div><p class="eyebrow">Spil {bn}</p><h3>{title}</h3></div><div class="swing pos">{top}<small>{toplbl}</small></div></header>\n'
-      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}{bid(bn,auction)}</div><div class="bright">{table(bn,hi)}{ps}</div></div></article>')
+      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}</div><div class="bright">{table(bn,hi)}{"" if auction else ps}</div>{f'<div class="bleft">{bid(bn,auction)}</div><div class="bright">{ps}</div>' if auction else ""}</div></article>')
 B=[
 (9,'Lilleslem med 30 HP','+1010','Top N-S',{5},[
  'N-S har 30 HP, ni hjerter og otte spar, og der mangler kun klør es. 6♥ har 12 stik på ethvert udspil: seks i trumf, tre i spar, to i ruder og en rudertrumfning hos Syd. Kun klør ud forhindrer det 13.',
