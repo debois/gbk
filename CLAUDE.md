@@ -14,7 +14,7 @@ A report has:
 2. "Aftenen kort": three short paragraphs on who won and why, linking to the boards.
 3. "Slutstilling": all pairs with score, expected score from handicap, and the difference.
 4. "Nøglespil": 3 to 7 boards, each with diagram, tricks-with-open-cards table, the full results table and two to four paragraphs.
-5. "Blandede toppe": one line each for good results by pairs not otherwise featured.
+5. "Blandede toppe": one line each for good results by pairs not otherwise featured. Each pair name links to the pair's scorecard on the official site and each board to that board there.
 6. "Noter": everything about sources, method and caveats.
 
 ## Steps
@@ -46,7 +46,7 @@ A report has:
    python3 -I tools/report-YYYY-MM-DD.py "$WORK/boards.json" 2026-11-09-a-raekken-blaa.html YYYY-MM-DD-<række>.html
    ```
 
-   The second argument is an existing report to take the stylesheet from. The script prints, per key board, the rows whose recorded lead is impossible.
+   The second argument is an existing report to take the stylesheet from. The script prints, per key board, the rows whose recorded lead is impossible. In "Aftenen kort" and "Blandede toppe" it links every "spil N": to the diagram in the report if N is a key board, otherwise to the board on the official page (`spilresultater.php…#BN`). In "Blandede toppe" it also links a pair's full name in `<b>` to `personligt_regnskab.php…&pairno=K`, so write names there exactly as in `ST`.
 
 5. **Verify against the site.** After writing, re-check every number and name in the prose against `boards.txt` and the standings: contracts, declarers, tricks, scores, percentages, counts like "fem af seks borde", point counts, suit lengths. The first version of the previous report said nine hearts where there were ten. An earlier AI-written report for Søren's league team had the two pairs' columns swapped and several analytical claims that did not survive a check, so he reads these sceptically.
 

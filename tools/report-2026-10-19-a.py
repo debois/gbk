@@ -139,6 +139,14 @@ out=f'''<!doctype html>
 </div>
 </html>
 '''
+KEY={b[0] for b in B}
+def ext(t): return re.sub(r'(?<!">)\b[Ss]pil (\d+)',lambda m:f'<a href="#b{m[1]}">{m[0]}</a>' if int(m[1]) in KEY else f'<a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1#B{m[1]}">{m[0]}</a>',t)
+def pairs(t):
+    for k,n,*_ in ST: t=t.replace(f'<b>{n}</b>',f'<b><a href="{U}personligt_regnskab.php?{Q}&amp;pairno={k}">{n}</a></b>')
+    return t
+def sect(t,a,b,f): i=t.index(a); j=t.index(b,i); return t[:i]+f(t[i:j])+t[j:]
+out=sect(out,'<section id="aften">','<section id="stilling">',ext)
+out=sect(out,'<section id="toppe">','<section id="method">',lambda t:pairs(ext(t)))
 open(sys.argv[3],'w',encoding='utf-8').write(out)
 for b in B:
     print(b[0],[(r['ns'],r['ew'],r['lead'],lead(b[0],r)) for r in rows(b[0]) if lead(b[0],r)=='?'], len(rows(b[0])))
