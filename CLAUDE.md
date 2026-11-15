@@ -60,7 +60,12 @@ A report has:
 
 8. **Commit with jj**, one commit, message like `feat: add Gentofte report for 9 November 2026`, no attribution line. Do not push and do not offer to; Søren publishes himself.
 
-Then tell Søren which boards you chose and why, and list anything you could not verify. Ask whether he has auctions or table stories to add: there are no auctions on the site, and the best paragraph in the first report (the 2♣–2UT–7UT auction on board 30) came from him.
+Then tell Søren which boards you chose and why, and list anything you could not verify.
+
+Also flag one to three boards where he should ask the players what happened, naming the table and the question. There are no auctions or play records on the site, and the best paragraph in the first report (the 2♣–2UT–7UT auction on board 30) came from him. Pick boards where the missing piece is the story:
+
+- The swing is in the bidding: tables scattered over different strains, levels and sides (5♠ doubled one way, 6♣ down one and 5♣ making the other), or a lone pair in a grand slam. Ask for the auction.
+- One table made or went down against the field, or took more tricks than the cards allow with open cards. Ask how the play went.
 
 ## Getting the analysis right
 
