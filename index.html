@@ -88,7 +88,7 @@ footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padd
 .src{font-size:.82rem;color:var(--muted)}
 .hl{font:400 .82rem var(--f-body);margin-left:8px}
 tr.hi td{background:var(--felt-soft)}
-.match .vs{font-size:1.35rem;line-height:1.2}
+.reports{font-size:1rem}.reports td{padding:10px}.reports .date{font:600 1.15rem var(--f-head);white-space:nowrap}
 </style>
 <div class="wrap">
 <header class="top">
@@ -97,12 +97,12 @@ tr.hi td{background:var(--felt-soft)}
 <p class="lede">Udvalgte spil og resultater fra klubaftener.</p>
 </header>
 <section><h2>Rapporter</h2>
-<div class="matches">
-<!-- Ny rapport: kopier en .match-blok, og sæt den øverst. -->
-<div class="match"><p class="eyebrow">A-rækken – BLÅ · åbent hus</p><p class="vs"><a href="2026-11-09-a-raekken-blaa.html">Mandag aften 9. november 2026</a></p><p class="src">Vindere: Jørgen Henrichsen – Jannik Kofoed, 61,3 %</p></div>
-<div class="match"><p class="eyebrow">A-rækken – BLÅ</p><p class="vs"><a href="2026-10-19-a-raekken-blaa.html">Mandag aften 19. oktober 2026</a></p><p class="src">Vindere: Rolf Fardan – Marianne Nodal, 58,3 %</p></div>
-<div class="match"><p class="eyebrow">B-rækken – RØD</p><p class="vs"><a href="2026-10-19-b-raekken-roed.html">Mandag aften 19. oktober 2026</a></p><p class="src">Vindere: Birgitte Dyrekilde – Benjamin Dyrekilde Sommerlund, 73,8 %</p></div>
-</div>
+<div class="tw"><table class="reports"><thead><tr><th>Dato</th><th>Aften</th><th>Række</th><th>Vindere</th></tr></thead><tbody>
+<!-- Ny rapport: kopier en række; nyeste øverst. -->
+<tr><td class="date"><a href="2026-11-09-a-raekken-blaa.html">9. november 2026</a></td><td>Mandag aften, åbent hus</td><td>A – Blå</td><td>Jørgen Henrichsen – Jannik Kofoed, 61,3 %</td></tr>
+<tr><td class="date"><a href="2026-10-19-a-raekken-blaa.html">19. oktober 2026</a></td><td>Mandag aften</td><td>A – Blå</td><td>Rolf Fardan – Marianne Nodal, 58,3 %</td></tr>
+<tr><td class="date"><a href="2026-10-19-b-raekken-roed.html">19. oktober 2026</a></td><td>Mandag aften</td><td>B – Rød</td><td>Birgitte Dyrekilde – Benjamin Dyrekilde Sommerlund, 73,8 %</td></tr>
+</tbody></table></div>
 </section>
 </div>
 </html>

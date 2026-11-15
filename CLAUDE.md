@@ -57,7 +57,7 @@ A report has:
    chromium --headless --disable-gpu --hide-scrollbars --window-size=1100,5200 --screenshot="$WORK/shot.png" "file://$PWD/YYYY-MM-DD-<række>.html"
    ```
 
-7. **Add it to the index.** Copy a `.match` block in `index.html` and set række, link, date and winners. Blocks are newest first. The link text is the weekday, time of day and date ("Mandag aften 19. oktober 2026"); that is what members look for.
+7. **Add it to the index.** Copy a table row in `index.html` and set date (the link), evening ("Mandag aften", with "åbent hus" if so), række and winners. Rows are newest first. Members find a report by date first, then evening, then række; keep the columns in that order.
 
 8. **Commit with jj**, one commit, message like `feat: add Gentofte report for 9 November 2026`, no attribution line. Do not push and do not offer to; Søren publishes himself.
 
