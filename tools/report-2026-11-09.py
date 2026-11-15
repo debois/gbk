@@ -45,10 +45,16 @@ def table(bn,hi):
         k=f'{r["lvl"]}{r["st"]}{"×" if r["dbl"] else ""} {r["decl"]}'
         o+=f'<tr{" class=\"hi\"" if (r["ns"] in hi or r["ew"] in hi) else ""}><td>{P[r["ns"]]}</td><td>{P[r["ew"]]}</td><td class="nw">{k}</td><td class="nw">{lead(bn,r)}</td><td class="num">{r["tricks"]}</td><td class="num"><span class="{c}">{num(r["score"])}</span></td><td class="num">{r["pct"]}</td></tr>'
     return suits(o+'</tbody></table></div>')
+def xr(bn,p):
+    if not OTHER: return p
+    f,_,row,oq,key=OTHER
+    h=f'{f}#b{bn}' if bn in key else f'{U}spilresultater.php?{oq}&amp;round=1&amp;half=1#B{bn}'
+    return re.sub(f'{row}|begge rækker|de to rækker',lambda m:f'<a href="{h}">{m[0]}</a>',p,count=1)
 def board(bn,title,top,toplbl,hi,paras):
-    ps=''.join(f'<p class="prose">{suits(p)}</p>' for p in paras)
+    ps=''.join(f'<p class="prose">{suits(xr(bn,p))}</p>' for p in paras)
     return (f'<article class="board" id="b{bn}"><header><div><p class="eyebrow">Spil {bn}</p><h3>{title}</h3></div><div class="swing pos">{top}<small>{toplbl}</small></div></header>\n'
       f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}</div><div class="bright">{table(bn,hi)}{ps}</div></div></article>')
+OTHER=None
 B=[
 (30,'Storeslem i sidste spil','+1520','Top N-S',{1,5},[
  'Syd har 23 HP og en semi-gående sekskortsfarve, og Nord lægger to esser til. Der er 13 stik fra toppen i både spar og sans: seks spar, to hjerter, ruder es og klørfarven, hvor bonden falder i anden runde. Intet udspil generer.',

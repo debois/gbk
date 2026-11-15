@@ -45,8 +45,13 @@ def table(bn,hi):
         k=f'{r["lvl"]}{r["st"]}{"×" if r["dbl"] else ""} {r["decl"]}'
         o+=f'<tr{" class=\"hi\"" if (r["ns"] in hi or r["ew"] in hi) else ""}><td>{P[r["ns"]]}</td><td>{P[r["ew"]]}</td><td class="nw">{k}</td><td class="nw">{lead(bn,r)}</td><td class="num">{r["tricks"]}</td><td class="num"><span class="{c}">{num(r["score"])}</span></td><td class="num">{r["pct"]}</td></tr>'
     return suits(o+'</tbody></table></div>')
+def xr(bn,p):
+    if not OTHER: return p
+    f,_,row,oq,key=OTHER
+    h=f'{f}#b{bn}' if bn in key else f'{U}spilresultater.php?{oq}&amp;round=1&amp;half=1#B{bn}'
+    return re.sub(f'{row}|begge rækker|de to rækker',lambda m:f'<a href="{h}">{m[0]}</a>',p,count=1)
 def board(bn,title,top,toplbl,hi,paras):
-    ps=''.join(f'<p class="prose">{suits(p)}</p>' for p in paras)
+    ps=''.join(f'<p class="prose">{suits(xr(bn,p))}</p>' for p in paras)
     return (f'<article class="board" id="b{bn}"><header><div><p class="eyebrow">Spil {bn}</p><h3>{title}</h3></div><div class="swing pos">{top}<small>{toplbl}</small></div></header>\n'
       f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}</div><div class="bright">{table(bn,hi)}{ps}</div></div></article>')
 B=[
@@ -72,11 +77,11 @@ B=[
 (21,'Én bet for meget','+800','Top N-S',{7},[
  'N-S har 28 HP og ni spar, men to trumftabere: Øst har esset single, og Vest har D-3-2 bag Syds K-B. Der er 11 stik, og udgangen giver 650.',
  'Øst har 6-5 i ruder og hjerter og meldte ved ét bord 5♦ uden for zonen. Med åbne kort er der syv stik på ethvert udspil. <b>Ipsen–Ingolfsson</b> doblede og fik 800 for fire beter, 150 mere end udgangen og ren top.',
- 'Marginen er ét stik: tre beter, 500, havde givet Ø-V toppen i stedet.']),
+ 'Marginen er ét stik: tre beter, 500, havde givet Ø-V toppen i stedet. I B-rækken blev 6♠ meldt ved ét bord og gav 12 stik.']),
 ]
 ST=[(5,'Rolf Fardan – Marianne Nodal',58.3,47.8),(8,'Claus Torben Christensen – Camilla Husted',56.6,52.9),(3,'Søren Debois – Lars Hareskov',52.4,50.8),(4,'Bent Fogel – Erling Guttermann',50.0,50.0),(6,'Eva Rosenbaum – Gert Vainer',49.4,48.9),(1,'Johannes Nord Jørgensen – Lene Suh Nicolaisen',47.6,49.5),(2,'Jørgen Henrichsen – Jannik Kofoed',45.8,49.0),(7,'Maja Ipsen – Jon Ingolfsson',39.9,51.1)]
 MP={5:'98,0',8:'95,0',3:'88,0'}
-ROW='A-rækken'; EYE='A-rækken – BLÅ'; OTHER=('2026-10-19-b-raekken-roed.html','B-rækkens rapport')
+ROW='A-rækken'; EYE='A-rækken – BLÅ'; OTHER=('2026-10-19-b-raekken-roed.html','B-rækkens rapport','B-rækken','filename=2132/MT491GT1440.XML&amp;tournament=491&amp;section=1',{5,21,11,17,13,23})
 LEDE='Fardan–Nodal vandt med 58,3 %, tre point foran Christensen–Husted, og var alene om lilleslemmen i spil 9. Storeslemmen i spil 5 stod, men blev ikke meldt i A-rækken.'
 AFTEN='''<p class="prose"><b>Rolf Fardan – Marianne Nodal</b> vandt med 98 point, tre foran <b>Claus Torben Christensen – Camilla Husted</b>. Vinderne var alene om lilleslemmen i <a href="#b9">spil 9</a> og vandt 3UT med 21 HP i spil 20. De var efter handicap sat til 47,8 % og tog rækkens største handicapgevinst (−0,69).</p>
 <p class="prose">Christensen–Husted fik syv rene toppe, flere end noget andet par, bl.a. som eneste par i udgang i <a href="#b19">spil 19</a>. <b>Søren Debois – Lars Hareskov</b> blev nummer tre med 52,4 % og fik toppen i <a href="#b2">spil 2</a>.</p>

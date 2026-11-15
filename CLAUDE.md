@@ -40,7 +40,7 @@ A report has:
 
    Arguments: the deal in PBN order N E S W; trump (0 ♠, 1 ♥, 2 ♦, 3 ♣, 4 UT); leader (0 N, 1 E, 2 S, 3 W). Output is declarer's tricks for each possible lead. `lib/libdds.a` there is a patched build; the stock one crashes.
 
-4. **Write the report.** Copy `tools/report-2026-11-09.py` to a new file for the new date and replace its data and prose: the query string `Q`, pair names `P`, boards `B`, standings `ST`, podium matchpoints `MP`, and the Danish text in the template. Then:
+4. **Write the report.** Copy the newest `tools/report-*.py` to a new file for the new date (one per række, e.g. `report-2026-10-19-a.py`) and replace its data and prose: the query string `Q`, pair names `P`, boards `B`, standings `ST`, podium matchpoints `MP`, and the Danish text in the template. If the evening has several rækker, they play the same cards: set `OTHER` to the other report's file name, link label, række name, query string and key boards, and mention in a board's text what happened on it in the other række when that is interesting (a slam bid there and not here, a different strain, a sacrifice). The script links the first "B-rækken", "begge rækker" or "de to rækker" in a board paragraph to that board in the other report, or to the official page if it is not a key board there. Links between reports are relative file names. With one række, set `OTHER=None`. Then:
 
    ```
    python3 -I tools/report-YYYY-MM-DD.py "$WORK/boards.json" 2026-11-09-a-raekken-blaa.html YYYY-MM-DD-<række>.html
@@ -99,5 +99,5 @@ Also flag one to three boards where he should ask the players what happened, nam
 - `index.html`: the list, newest first.
 - `tools/fetch.sh`, `totext.py`, `parse.py`, `fmt.py`: download and parse the results pages.
 - `tools/leads.c`: tricks per opening lead.
-- `tools/report-2026-11-09.py`: generator for the first report; it reproduces that file byte for byte and is the template for the next one.
+- `tools/report-YYYY-MM-DD[-række].py`: one generator per report; each reproduces its report, and the newest is the template for the next one.
 - `.nojekyll`: keeps GitHub Pages from processing the files.
