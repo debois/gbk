@@ -69,10 +69,9 @@ tr.sum td{font-weight:600;border-bottom:1px solid var(--ink)}
 .dmeta b{font:700 1.3rem/1 var(--f-head);color:var(--ink);margin-bottom:2px}
 .hand{white-space:nowrap;min-width:0}.hand i{display:none}
 .hn{grid-area:n}.hw{grid-area:w;align-self:center}.he{grid-area:e;align-self:center}.hs{grid-area:s}
-.compass{grid-area:c;align-self:center;justify-self:center;width:44px;height:44px;border:1.5px solid var(--felt);border-radius:4px;position:relative}
-.compass::before{content:"N";position:absolute;top:1px;left:0;right:0;text-align:center;font:600 .62rem var(--f-mono);color:var(--felt)}
-.compass::after{content:"V          Ø";white-space:pre;position:absolute;top:14px;left:3px;font:600 .62rem var(--f-mono);color:var(--felt);letter-spacing:-.5px}
-@media (max-width:420px){.deal{font-size:.72rem;padding:8px;gap:4px}.compass{width:34px;height:34px}.compass::after{content:""}}
+.compass{grid-area:c;align-self:center;justify-self:center;width:44px;height:44px;border:1.5px solid var(--felt);border-radius:4px;display:grid;grid-template:". n ." 1fr "w . e" 1fr ". s ." 1fr/1fr 1fr 1fr;place-items:center;font:600 .62rem/1 var(--f-mono);color:var(--felt)}
+.compass b{font-weight:600}.compass b:nth-child(1){grid-area:n}.compass b:nth-child(2){grid-area:w}.compass b:nth-child(3){grid-area:e}.compass b:nth-child(4){grid-area:s}
+@media (max-width:420px){.deal{font-size:.72rem;padding:8px;gap:4px}.compass{width:34px;height:34px}}
 .dd{width:auto;font-size:.8rem}.dd th,.dd td{padding:2px 9px;text-align:right;font-family:var(--f-mono);border-bottom:none}
 .dd thead th{border-bottom:1px solid var(--line);font-size:.8rem;text-transform:none}
 .dd tbody th{text-align:left;border-bottom:none;text-transform:none}
