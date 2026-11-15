@@ -15,8 +15,8 @@ A report has:
 3. "Nøglespil": 3 to 7 boards, each with diagram, tricks-with-open-cards table, the full results table and two to four paragraphs.
 4. "I øvrigt": one line each for good results by pairs not otherwise featured. Each board mentioned links to that board on the official site.
 5. "Slutstilling": all pairs with score, expected score from handicap, and the difference.
-6. "Noter", collapsed by default: everything about sources, method and caveats. Below it, always visible, a line telling apart pairs whose short names in the tables could be confused, if any.
-7. Footer: links to the official pages, then generation date and byline.
+6. "Noter", collapsed by default: everything about sources, method and caveats. Below it, always visible: a line telling apart pairs whose short names in the tables could be confused, if any, then the links to the official pages.
+7. Footer: date written and byline.
 
 ## Steps
 
