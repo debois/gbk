@@ -1,0 +1,11 @@
+import sys,re,html
+t=open(sys.argv[1],encoding='utf-8-sig').read()
+t=re.sub(r'(?s)<script.*?</script>|<style.*?</style>','',t)
+t=re.sub(r'<img[^>]*?(?:alt|src)="([^"]*)"[^>]*>',r'[\1]',t)
+t=re.sub(r'</t[dh]>','\t',t)
+t=re.sub(r'</tr>|<br\s*/?>|</p>|</h\d>|</div>|</li>','\n',t)
+t=re.sub(r'<[^>]+>','',t)
+t=html.unescape(t)
+t=re.sub(r'[ \r]+',' ',t)
+t=re.sub(r'\n\s*\n+','\n',t)
+print(t)
