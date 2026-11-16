@@ -57,6 +57,8 @@ A report has:
    chromium --headless --disable-gpu --hide-scrollbars --window-size=1100,5200 --screenshot="$WORK/shot.png" "file://$PWD/YYYY-MM-DD-<række>.html"
    ```
 
+   The suit symbols come from a four-glyph font embedded in the stylesheet, because Plex has none and system fallbacks differ per suit (on Søren's machine the heart came from a Nerd Font and was larger than the rest). Keep every suit symbol inside the `suits()` spans.
+
    The stylesheet has a print layout meant to put two boards on a page. After changing the stylesheet or the board markup, check it too: `chromium --headless --no-pdf-header-footer --print-to-pdf="$WORK/r.pdf" "file://…"`, then `pdftoppm -r 60 -png` and read the pages.
 
 7. **Add it to the index.** Copy a table row in `index.html` and set date (the link), evening ("Mandag aften", with "åbent hus" if so), række and winners. Rows are newest first. Members find a report by date first, then evening, then række; keep the columns in that order.
