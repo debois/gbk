@@ -88,14 +88,17 @@ B=[
 ST=[(2,'Claus Torben Christensen – Camilla Husted',65.8,53.3),(13,'Eva Rosenbaum – Gert Vainer',62.5,55.3),(7,'Johannes Nord Jørgensen – Lene Suh Nicolaisen',57.2,50.2),(9,'Ulrik Koks Andreassen – Bente Øxseth',53.3,49.2),(6,'Søren Debois – Birgitte Dyrekilde',53.0,49.1),(10,'Christina Egstrup – Bo Veibel Petersen',50.3,49.4),(5,'Jørgen Henrichsen – Jannik Kofoed',49.3,49.3),(3,'Anja Serritzlew – Ole Eckstrøm',49.1,50.6),(4,'Maja Ipsen – Jon Ingolfsson',49.1,50.6),(12,'Rolf Fardan – Marianne Nodal',48.7,54.8),(14,'Bente Nielsen – Karin Brix',47.2,39.5),(8,'Christian Bruun Rasmussen – Benjamin Dyrekilde Sommerlund',39.7,46.3),(1,'Asbjørn Boysen – Peter Krogh',39.0,54.8),(11,'Kirsten Neergaard – Hans Lykke Hansen',35.9,47.7)]
 MP={2:'221,2',13:'209,8'}
 HAC=(14,'−0,65'); HACLBL='Næststørste handicapgevinst'
+GRP=7  # indvævet Howell: par 1..GRP mødes indbyrdes, resten ligeså; None for almindelig Howell
 GEN='16. november 2026'; NAMES='Dyrekilde i resultattabellerne er Birgitte Dyrekilde; Dyrekilde Sommerlund er Benjamin Dyrekilde Sommerlund.'
 names=f'<p class="note">{NAMES}</p>' if NAMES else ''
 dk=lambda x:f'{x:.1f}'.replace('.',',')
 def diff(a,b):
     d=round(a-b,1); return f'<span class="{"pos" if d>0 else "neg" if d<0 else "zero"}">{num(0) if d==0 else ("+" if d>0 else "−")+dk(abs(d))}</span>'
-cards=''.join(f'<div class="match"><p class="eyebrow">{i+1}. plads</p><p class="vs">{n}</p><p class="score"><b>{dk(p)}</b> <span>%</span></p><p class="vp">{MP[k]} MP · forventet {dk(e)} %</p></div>' for i,(k,n,p,e) in enumerate(ST[:2]))
+grp=lambda k:f'par 1–{GRP}' if k<=GRP else f'par {GRP+1}–{len(ST)}'
+GW={} if not GRP else {next(s for s in ST if (s[0]<=GRP)==a)[0] for a in (True,False)}
+cards=''.join(f'<div class="match"><p class="eyebrow">{i+1}. plads{" · bedst blandt "+grp(k) if k in GW else ""}</p><p class="vs">{n}</p><p class="score"><b>{dk(p)}</b> <span>%</span></p><p class="vp">{MP[k]} MP · forventet {dk(e)} %</p></div>' for i,(k,n,p,e) in enumerate(ST[:2]))
 cards+=''.join(f'<div class="match"><p class="eyebrow">{HACLBL}</p><p class="vs">{n}</p><p class="score"><b>{HAC[1]}</b> <span>handicap</span></p><p class="vp">{dk(p)} % · forventet {dk(e)} %</p></div>' for k,n,p,e in ST if k==HAC[0])
-stand=''.join(f'<tr><td class="num">{i+1}</td><td>{n}</td><td class="num">{dk(p)}</td><td class="num">{dk(e)}</td><td class="num">{diff(p,e)}</td></tr>' for i,(k,n,p,e) in enumerate(ST))
+stand=''.join(f'<tr><td class="num">{i+1}</td><td class="num">{k}</td><td>{n}</td><td class="num">{dk(p)}</td><td class="num">{dk(e)}</td><td class="num">{diff(p,e)}</td></tr>' for i,(k,n,p,e) in enumerate(ST))
 AFTEN='''<p class="prose"><b>Claus Torben Christensen – Camilla Husted</b> vandt med 65,8 %, 11,4 matchpoint foran nummer to. De tog syv rene toppe, og i halvdelen af aftenens 28 spil fik de mindst 83 %. De var alene om at melde og vinde slem i spil 2, meldte 6♥ i spil 11 og blev i 3UT i spil 5, hvor fire slemmer gik ned. De havde også feltets største handicapgevinst (−1,05).</p>
 <p class="prose"><b>Eva Rosenbaum – Gert Vainer</b> blev nummer to med 62,5 %. De meldte og vandt 6UT i spil 19 og satte 3UT tre gange i både spil 15 og spil 24. <b>Johannes Nord Jørgensen – Lene Suh Nicolaisen</b> tog tredjepladsen med 57,2 % og tre rene toppe: 1100 i spil 13, 3UT i spil 4, som gik ned ved fire andre borde, og 3UT med 13 stik i spil 20.</p>
 <p class="prose">Det var slemmernes aften. I seks spil, 2, 5, 6, 11, 19 og 20, havde den ene side 12 eller 13 stik med åbne kort. På de seks spil blev der meldt ti slemmer, og fire gik hjem. <b>Bente Nielsen – Karin Brix</b> scorede 47,2 % mod forventet 39,5 % og fik den næststørste handicapgevinst (−0,65), bl.a. med 150 mod 6♣ i spil 5.</p>'''
@@ -109,6 +112,7 @@ TOPPE='''<li><b>Ulrik Koks Andreassen – Bente Øxseth</b> tog to rene toppe i 
 <li><b>Kirsten Neergaard – Hans Lykke Hansen</b> satte 4♥ i spil 1 og vandt 1UT i spil 21, begge til 91,7 %.</li>
 <li><b>Bente Nielsen – Karin Brix</b> satte 4♠ i spil 10 og tog ni stik i 2♥ i spil 3, begge til 91,7 %.</li>'''
 LEADS='<li>Et spørgsmålstegn i udspilskolonnen betyder, at det noterede udspil ikke findes på udspillerens hånd. I spil 2 er klør 4 noteret mod 4♠ spillet af Øst og ruder 6 mod 6♦ spillet af Vest, og i spil 13 klør 6 mod 5♥ spillet af Syd; alle tre kort sidder hos spilfører selv.</li>'
+gwin='' if not GRP else '<p class="prose">Turneringen blev spillet som indvævet Howell: par 1–7 mødte hinanden indbyrdes, par 8–14 ligeså, og hvert par spillede én runde mod et par fra den anden gruppe. Scorerne er regnet over hele feltet.</p><p class="prose">'+' '.join(f'Bedst blandt {grp(k)}: <b>{n}</b>, {dk(p)} %.' for k,n,p,e in ST if k in GW)+'</p>'
 out=f'''<!doctype html>
 <html lang="da">
 <meta charset="utf-8">
@@ -123,7 +127,7 @@ out=f'''<!doctype html>
 <h1>Mandag aften, 16. november</h1>
 <p class="lede">Christensen–Husted vandt med 65,8 % og syv rene toppe. Kortene bød på slem i seks spil; ti blev meldt, og fire gik hjem.</p>
 <div class="matches">{cards}</div>
-<p class="src">14 par, Howell, 28 spil, top 12 pr. spil.</p>
+<p class="src">14 par, indvævet Howell, 28 spil, top 12 pr. spil.</p>
 <nav><a href="#aften">Aftenen kort</a><a href="#boards">Nøglespil</a><a href="#toppe">I øvrigt</a><a href="#stilling">Slutstilling</a><a href="#method">Noter</a></nav>
 </header>
 <section id="aften"><h2>Aftenen kort</h2>
@@ -137,7 +141,8 @@ out=f'''<!doctype html>
 {suits(TOPPE)}
 </ul></section>
 <section id="stilling"><h2>Slutstilling</h2>
-<div class="tw"><table><thead><tr><th class="num">Plac.</th><th>Par</th><th class="num">%</th><th class="num">Forventet %</th><th class="num">Forskel</th></tr></thead><tbody>{stand}</tbody></table></div>
+{gwin}
+<div class="tw"><table><thead><tr><th class="num">Plac.</th><th class="num">Nr.</th><th>Par</th><th class="num">%</th><th class="num">Forventet %</th><th class="num">Forskel</th></tr></thead><tbody>{stand}</tbody></table></div>
 <p class="note">Forventet score er beregnet af arrangøren ud fra parrets handicap.</p>
 </section>
 <section id="method"><details><summary><h2>Noter</h2></summary>
