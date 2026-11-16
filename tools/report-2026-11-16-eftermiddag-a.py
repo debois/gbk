@@ -79,7 +79,7 @@ B=[
  'N-S har 29 HP, men ingen otte-korts fit. I sans er der 11 stik: fire spar, fire hjerter, fordi damen sidder single hos Øst og Vests 10 kan knibes, ruder es og dame med knibning, og klør es.',
  'Det tolvte stik er en skvis. Øst holder alene ruderne og klør konge, og når majorstikkene bliver taget, kan Øst ikke beholde begge hold. Men skvisen virker kun, hvis spilfører først har afgivet et stik. Efter klør 10 ud, dækket med damen hos Vest, skal Nord derfor lade damen holde stikket. Tager Nord esset med det samme, er der kun 11 stik. Udspil af klør konge holder også spilfører på 11.',
  '<b>Nielsen–Jarnit</b> fik netop klør 10 ud og tog 12 stik: 690 og ren top. I B-rækken spillede alle seks borde 3UT, ét af dem med 12 stik.',
- '<b>Dyrekilde–Neis</b> gik efter slemmen og endte i 6♥ på en 4-3-fit. Trumferne sidder 5-1, og det blev 11 stik. Loft–Harder stoppede i 5UT, også med 11 stik.']),
+ '<b>Dyrekilde–Neis</b> gik efter slemmen og endte i 6♥ på en 4-3-fit. Set fra N-S-hænderne alene står den slem med åbne kort på 34 % af de mulige fordelinger hos Ø-V: 54 %, når ruder konge sidder til knib, og 13 %, når den ikke gør. Her sad kongen til knib, men trumferne 5-1, og det blev 11 stik. Loft–Harder stoppede i 5UT, også med 11 stik.']),
 (2,'Spar mod klør','+620','Top N-S',{7,6},[
  'N-S har ti spar og 22 HP, Ø-V 11 klør og 18 HP. Med åbne kort har begge sider ti stik i deres farve: 4♠ står, og 5♣ går én ned. Det bedste, Ø-V kan gøre, er at ofre i 5♣ doblet for 100.',
  '<b>Øgaard–Egstrup</b> var det eneste N-S-par, der fik lov at spille 4♠: 620 og ren top. Ved de fire andre borde spillede Ø-V klør på fem- eller sekstrinnet. Selv 6♣ doblet to ned kostede kun 300, under det halve af udgangen.',
@@ -106,7 +106,8 @@ TOPPE='''<li><b>Bente Schaltz – Kirsten Stenbjerre</b> fik ren top for fire ga
 <li><b>Kim Balslev – Anders Henrichsen</b> fik ti stik i 3UT i spil 9: 630 og ren top til Ø-V.</li>
 <li><b>Lars Øgaard – Christina Egstrup</b> tog 12 stik i 4♠ i spil 14 (480) og satte 4♠ i spil 17, som blev vundet ved to andre borde.</li>'''
 EXTRA='''<li>Spil 24: chancen for 6♣ er regnet som ruderne 3-2 (68 %) eller hjerter dame hos Øst. Spil 18: chancen for 6♠ er regnet som ruder es hos Øst.</li>
-<li>Spil 1, 18, 24 og 26 er kontrolleret ved at flytte nøglekortet til den anden hånd og regne igen. Skvisen i spil 23 og spilleplanen i spil 26 er fulgt kort for kort.</li>'''
+<li>Spil 1, 18, 24 og 26 er kontrolleret ved at flytte nøglekortet til den anden hånd og regne igen. Skvisen i spil 23 og spilleplanen i spil 26 er fulgt kort for kort.</li>
+<li>Spil 23: chancen for 6♥ er fundet ved at dele Ø-V's kort tilfældigt 1.641 gange og regne hver fordeling med åbne kort. Tallet er en øvre grænse, for med åbne kort finder spilfører altid trumf dame.</li>'''
 LEADS='<li>Et spørgsmålstegn i udspilskolonnen betyder, at det noterede udspil ikke findes på udspillerens hånd. I spil 1 er ruder es noteret mod 4♥ spillet af Vest, men esset sidder hos Syd; det passer med Øst som spilfører. I spil 24 er spar 7 noteret mod 4♣ spillet af Syd og spar 4 mod 3♦ spillet af Nord; begge kort sidder hos den anden modspiller, så spilføreren kan være noteret på den forkerte plads.</li>'
 GEN='16. november 2026'; NAMES='Nielsen i resultattabellerne er Maj-Britt Nielsen, substitut for Kim Nørgaard Nielsen. Øgaard–Egstrup er turneringsparret Øgaard–Knie-Andersen med Christina Egstrup som substitut. Henrichsen er Anders Henrichsen.'
 names=f'<p class="note">{NAMES}</p>' if NAMES else ''
