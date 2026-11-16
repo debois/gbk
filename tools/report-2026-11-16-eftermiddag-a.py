@@ -25,10 +25,13 @@ def rows(bn):
         m=re.match(r'^([NSØV]) (\d)(UT|[♠♥♦♣])( D)?$',f[0]); assert m,f
         out.append(dict(ns=ns,ew=ew,decl=m[1],lvl=m[2],st=m[3],dbl=bool(m[4]),lead=f[1],tricks=int(f[2]),score=int(f[3]),pct=f[6]))
     return out
+def diagram(meta,d):
+    return (f'<div class="deal">{meta}'
+      +hand(d['N'],'hn','N')+hand(d['W'],'hw','V')+'<div class="compass" aria-hidden="true"><b>N</b><b>V</b><b>Ø</b><b>S</b></div>'+hand(d['E'],'he','Ø')+hand(d['S'],'hs','S')+'</div>')
 def deal(bn):
     d=boards[str(bn)]['deal']
-    return (f'<div class="deal"><div class="dmeta"><b>{bn}</b><span>Giver {DL[d["dealer"]]}</span><span>{VL[d["vul"]]}</span></div>'
-      +hand(d['N'],'hn','N')+hand(d['W'],'hw','V')+'<div class="compass" aria-hidden="true"><b>N</b><b>V</b><b>Ø</b><b>S</b></div>'+hand(d['E'],'he','Ø')+hand(d['S'],'hs','S')+'</div>')
+    return diagram(f'<div class="dmeta"><b>{bn}</b><span>Giver {DL[d["dealer"]]}</span><span>{VL[d["vul"]]}</span></div>',d)
+def pos(a): return f'<p class="lbl">{a[0]}</p>'+diagram('',a[1])
 def ddt(bn):
     dd=boards[str(bn)]['dd'][6:]; t={dd[i]:dd[i+1:i+6] for i in range(0,28,7)}
     def row(a,b,l): return f'<tr><th>{l}</th>'+''.join(f'<td>{x if x==y else x+"/"+y}</td>' for x,y in zip(t[a],t[b]))+'</tr>'
@@ -60,7 +63,7 @@ def bid(bn,a):
 def board(bn,title,top,toplbl,hi,paras,auction=None):
     ps=''.join(f'<p class="prose">{suits(xr(bn,p))}</p>' for p in paras)
     return (f'<article class="board" id="b{bn}"><header><div><p class="eyebrow">Spil {bn}</p><h3>{title}</h3></div><div class="swing pos">{top}<small>{toplbl}</small></div></header>\n'
-      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}</div><div class="bright">{table(bn,hi)}{"" if auction else ps}</div>{f'<div class="bleft">{bid(bn,auction)}</div><div class="bright">{ps}</div>' if auction else ""}</div></article>')
+      f'<div class="bgrid"><div class="bleft">{deal(bn)}{ddt(bn)}</div><div class="bright">{table(bn,hi)}{"" if auction else ps}</div>{f'<div class="bleft">{pos(auction) if isinstance(auction[1],dict) else bid(bn,auction)}</div><div class="bright">{ps}</div>' if auction else ""}</div></article>')
 ROW='A-rækken'; OTHER=('2026-11-16-eftermiddag-b.html','B-rækkens rapport','B-rækken','filename=2132/MT493GT1449.XML&amp;tournament=493&amp;section=3',{24,21,15,3,7,2})
 B=[
 (24,'28 HP og ét par i udgang','+420','Top N-S',{3},[
@@ -77,9 +80,12 @@ B=[
  'Toppen gik til 3UT. Ti stik giver 630, og 5♦ med overstik kun 620, så i parturnering skal ruderkontrakten helt op i slem for at betale sig. <b>Schaltz–Stenbjerre</b> og <b>Balslev–Henrichsen</b> delte toppen.']),
 (23,'Det tolvte stik i 3UT','+690','Top N-S',{2,1,5},[
  'N-S har 29 HP, men ingen otte-korts fit. I sans er der 11 stik: fire spar, fire hjerter, fordi damen sidder single hos Øst og Vests 10 kan knibes, ruder es og dame med knibning, og klør es.',
- 'Det tolvte stik er en skvis. Øst holder alene ruderne og klør konge, og når majorstikkene bliver taget, kan Øst ikke beholde begge hold. Men skvisen virker kun, hvis spilfører først har afgivet et stik. Efter klør 10 ud, dækket med damen hos Vest, skal Nord derfor lade damen holde stikket. Tager Nord esset med det samme, er der kun 11 stik. Udspil af klør konge holder også spilfører på 11.',
+ 'Det tolvte stik er en skvis. Øst holder alene ruderne og klør konge, og når majorstikkene bliver taget, kan Øst ikke beholde begge hold. Men skvisen virker kun, hvis spilfører først har afgivet et stik. Efter klør 10 ud, dækket med damen hos Vest, skal Nord derfor lade damen holde stikket. Tager Nord esset med det samme, er der kun 11 stik.',
+ 'Derefter tager spilfører sine stik i en bestemt rækkefølge: spar dame og bonde, ruder 10 til bonden og damen, spar es og konge, og så hjerter konge, bonde og knibningen over Vests 10. Hjerter es gemmes til sidst. Diagrammet viser stillingen efter spar tilbage fra Vest. På hjerter es skal Øst kaste fra K-8 i ruder og K-9 i klør. Kaster Øst en ruder, falder kongen under esset, og Syds ruder står. Kaster Øst en klør, falder kongen under esset, og bonden står.',
+ 'Spiller Vest klør tilbage i andet stik, skal Nord tage esset, og skvisen virker på samme måde med klør bonde som trussel. Udspil af klør konge holder spilfører på 11.',
  '<b>Nielsen–Jarnit</b> fik netop klør 10 ud og tog 12 stik: 690 og ren top. I B-rækken spillede alle seks borde 3UT, ét af dem med 12 stik.',
- '<b>Dyrekilde–Neis</b> gik efter slemmen og endte i 6♥ på en 4-3-fit. Set fra N-S-hænderne alene står den slem med åbne kort på 34 % af de mulige fordelinger hos Ø-V: 54 %, når ruder konge sidder til knib, og 13 %, når den ikke gør. Her sad kongen til knib, men trumferne 5-1, og det blev 11 stik. Loft–Harder stoppede i 5UT, også med 11 stik.']),
+ '<b>Dyrekilde–Neis</b> gik efter slemmen og endte i 6♥ på en 4-3-fit. Set fra N-S-hænderne alene står den slem med åbne kort på 34 % af de mulige fordelinger hos Ø-V: 54 %, når ruder konge sidder til knib, og 13 %, når den ikke gør. Her sad kongen til knib, men trumferne 5-1, og det blev 11 stik. Loft–Harder stoppede i 5UT, også med 11 stik.'],
+ ('Nord spiller hjerter es',{'N':'.A.5.AJ','E':'..K8.K9','S':'..A764.','W':'.T8..63'})),
 (2,'Spar mod klør','+620','Top N-S',{7,6},[
  'N-S har ti spar og 22 HP, Ø-V 11 klør og 18 HP. Med åbne kort har begge sider ti stik i deres farve: 4♠ står, og 5♣ går én ned. Det bedste, Ø-V kan gøre, er at ofre i 5♣ doblet for 100.',
  '<b>Øgaard–Egstrup</b> var det eneste N-S-par, der fik lov at spille 4♠: 620 og ren top. Ved de fire andre borde spillede Ø-V klør på fem- eller sekstrinnet. Selv 6♣ doblet to ned kostede kun 300, under det halve af udgangen.',
