@@ -75,6 +75,12 @@ B=[
 (6,'Slemmen, ingen meldte','+480','Bedste N-S',set(),[
  'N-S har 27 HP og ni spar, og Syd har alle fire esser. 6♠ har 12 stik på ethvert udspil, og slemmen afhænger ikke af trumfknibningen: sidder spar konge bag esset, afgives den, og der er stadig 12 stik. Nord kaster to klør på hjerter es-konge, og Syd trumfer sin tredje klør på bordet.',
  'Alle syv borde spillede 4♠. Seks af dem tog 12 stik og delte 58,3 %. I spil 20 var der også 12 stik og ingen i slem, men dér skal klør konge sidde rigtigt.']),
+(8,suits('Nord genåbner med 3♣'),'+150','Top N-S',{5,6,10},[
+ 'Syd har 17 HP og melder 1UT efter Østs åbning. Nord har 4 HP og passer, og Øst gentager sin seksfarve. Da 2♠ kommer rundt til Nord, er valget pas eller 3♣.',
+ 'Meldingerne fortæller Nord det meste. Makker har 15–18 HP, så N-S har omkring halvdelen af pointene, og Ø-V er stoppet i en delkontrakt. Makkers hånd er jævn, så der er mindst to klør overfor og oftest tre: en otte-korts fit er sandsynlig. Nords hånd er ét stik værd i modspil, men med klør som trumf giver femfarven stik. Og ingen er i zonen: én ned koster 50, mindre end de 110 for en vundet 2♠.',
+ 'Kortene giver Nord ret. Med åbne kort er der ni stik i klør, og 2♠ går én ned, når N-S ikke spiller hjerter eller spar dame ud. Pas og 50 havde givet 25 %; 110 i 3♣ havde givet 50 %. Ved bordet fik <b>Henrichsen–Kofoed</b> ruder dame ud og otte stik, så <b>Debois–Dyrekilde</b> fik 50 og 83,3 %.',
+ 'Toppen gik til <b>Egstrup–Veibel Petersen</b>, der satte 2♠ tre gange: 150. N-S har ni stik i sans på ethvert udspil, men med 4 HP hos Nord meldte ingen udgangen.'],
+ ('Meldeforløb, Henrichsen–Kofoed N-S',['pas','pas','1♠','1UT','pas','pas','2♠','pas','pas','3♣','pas','pas','pas'])),
 (11,suits('To par i 6♥'),'+980','Top N-S',{2,6,13,3,12},[
  'N-S har 28 HP og ni hjerter, og Ø-V kan kun tage spar es. Der er 12 stik i både hjerter og klør på ethvert udspil.',
  '<b>Christensen–Husted</b> og <b>Debois–Dyrekilde</b> meldte slemmen og delte toppen med 980. <b>Rosenbaum–Vainer</b> spillede 4♥ og fik klør ud i stedet for spar: 13 stik og 510.',
@@ -83,7 +89,8 @@ B=[
  'N-S har 30 HP og 11 stik: fem klør, tre hjerter, spar es og to ruder, når esset er drevet ud. Spar konge og ruder es sidder begge hos Øst, og det tolvte stik findes ved at udnytte netop det.',
  'Nøglen er ruder 10 fra Nord. Lægger Øst lavt, vinder tieren, og ruderne giver tre stik. Dækker Øst med bonden, eller tager Øst esset, er der kun to ruderstik, men nu holder Øst alene både ruderne og spar konge. Spilfører tager spar es og spiller Nords klør til ende. På den sidste klør må Øst kaste spar konge eller sit ruderhold, og Syd kaster efter Øst. Spiller man i stedet en lille ruder til kongen, lægger Øst lavt og beholder E-B bag Syds små ruder, og så er der kun 11 stik.',
  'Spar ud ødelægger planen. Stikker Nord med esset, kan Øst tage spar konge, når Øst kommer ind på ruder es. Lægger Nord lavt, tager Øst kongen med det samme. Med Nord som spilfører har Øst udspillet og kan ikke spille spar uden at give Syd stik for damen, så dér står 6UT på ethvert udspil. Med Syd som spilfører står den kun, hvis Vest ikke spiller spar ud.',
- 'Begge slemmer blev spillet af Syd. <b>Rosenbaum–Vainer</b> fik ruder 8 ud og tog 12 stik: 990 og ren top. Ved det andet bord spillede <b>Henrichsen–Kofoed</b> spar 3 ud, og kontrakten gik én ned. De fem andre borde stoppede under slem og tog 10 eller 11 stik.']),
+ 'Begge slemmer blev spillet af Syd. Hos <b>Rosenbaum–Vainer</b> inviterede Nord med 4UT og meldte selv slemmen. "Jeg gav den en tand for meget på grund af min femfarve," fortæller Gert Vainer. Vest spillede ruder 8 ud, Øst tog esset og skiftede til spar 8, og Syds dame blev det tolvte stik: 990 og ren top. Efter et andet skift er skvisen mod Øst der stadig. Ved det andet bord spillede <b>Henrichsen–Kofoed</b> spar 3 ud, og kontrakten gik én ned. De fem andre borde stoppede under slem og tog 10 eller 11 stik.'],
+ ('Meldeforløb, Rosenbaum–Vainer N-S',['1UT','pas','2♣','pas','2♦','pas','4UT','pas','5♣','pas','6UT','pas','pas','pas'])),
 (13,'Doblet spar mod udgang','+1100','Top N-S',{7,12,11},[
  'Vest har 5-5 i spar og klør og finder fire spar hos Øst, men Nord sidder med E-D-B-6 bag Vest, og Syd er renonce. Med åbne kort får Vest seks stik i spar. N-S har 25 HP og udgang: 3UT og 4♥ har ti stik.',
  'Regnestykket i parturnering: N-S\'s udgang i zonen giver 630, så en doblet sparkontrakt skal tre ned for at betale mere. <b>Fardan–Nodal</b> doblede 3♠ og fik netop de tre beter, 800. <b>Nord Jørgensen–Suh Nicolaisen</b> doblede 4♠ og fik 1100 og ren top.',
@@ -93,7 +100,7 @@ ST=[(2,'Claus Torben Christensen – Camilla Husted',65.8,53.3),(13,'Eva Rosenba
 MP={2:'221,2',13:'209,8'}
 HAC=(14,'−0,65'); HACLBL='Næststørste handicapgevinst'
 GRP=7  # indvævet Howell: par 1..GRP mødes indbyrdes, resten ligeså; None for almindelig Howell
-GEN='16. november 2026'; NAMES='Dyrekilde i resultattabellerne er Birgitte Dyrekilde; Dyrekilde Sommerlund er Benjamin Dyrekilde Sommerlund.'
+GEN='17. november 2026'; NAMES='Dyrekilde i resultattabellerne er Birgitte Dyrekilde; Dyrekilde Sommerlund er Benjamin Dyrekilde Sommerlund.'
 names=f'<p class="note">{NAMES}</p>' if NAMES else ''
 dk=lambda x:f'{x:.1f}'.replace('.',',')
 def diff(a,b):
@@ -157,7 +164,7 @@ out=f'''<!doctype html>
 <li>Resultater, kortfordelinger og tabeller over stik med åbne kort kommer fra <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Danmarks Bridgeforbunds resultatside</a>. Udspilsanalyserne med åbne kort er beregnet med Dealers medfølgende solver.</li>
 <li>Spil 6 er kontrolleret ved at flytte spar konge til Vest og regne igen: stadig 12 stik. I spil 20 giver klør konge hos Vest højst 11 stik i spar og klør, når der ikke kommer trumf ud. </li>
 <li>Procenterne i spil 2 er antal stik med åbne kort over 3000 tilfældige fordelinger af N-S's kort. Det er lidt gunstigere end ved bordet, hvor spilfører ikke kan se, hvordan farverne sidder. I spil 5 er det meget gunstigere: med åbne kort står 6♥ i 60 % af 1500 tilfældige fordelinger, men kun fordi spilfører kan vælge plan efter kortenes placering. Tallene i teksten gælder derfor de to beskrevne planer. Spilleplanerne i spil 5 og 19 er fulgt kort for kort med solveren mod bedste modspil.</li>
-<li>Resultatsiden har ingen meldeforløb og ingen spilleforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne.</li>
+<li>Resultatsiden har ingen meldeforløb og ingen spilleforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne, undtagen i spil 8 og 19. Meldeforløbet i spil 8 er gengivet efter hukommelsen af Ø-V. Meldinger og spil i spil 19 er oplyst af Gert Vainer; modstandernes pas er antaget.</li>
 <li>Navnene følger parrene, da resultatlisten ikke viser, hvem der sad på hvilken plads.</li>
 {suits(LEADS)}
 </ul></details>{names}
