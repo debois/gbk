@@ -77,8 +77,9 @@ B=[
  'Alle syv borde spillede 4♠. Seks af dem tog 12 stik og delte 58,3 %. I spil 20 var der også 12 stik og ingen i slem, men dér skal klør konge sidde rigtigt.']),
 (8,suits('Nord genåbner med 3♣'),'+150','Top N-S',{5,6,10},[
  'Syd har 17 HP og melder 1UT efter Østs åbning. Nord har 4 HP og passer, og Øst gentager sin seksfarve. Da 2♠ kommer rundt til Nord, er valget pas eller 3♣.',
- 'Meldingerne fortæller Nord det meste. Makker har 15–18 HP, så N-S har omkring halvdelen af pointene, og Ø-V er stoppet i en delkontrakt. Makkers hånd er jævn, så der er mindst to klør overfor og oftest tre: en otte-korts fit er sandsynlig. Nords hånd er ét stik værd i modspil, men med klør som trumf giver femfarven stik. Og ingen er i zonen: én ned koster 50, mindre end de 110 for en vundet 2♠.',
- 'Kortene giver Nord ret. Med åbne kort er der ni stik i klør, og 2♠ går én ned, når N-S ikke spiller hjerter eller spar dame ud. Pas og 50 havde givet 25 %; 110 i 3♣ havde givet 50 %. Ved bordet fik <b>Henrichsen–Kofoed</b> ruder dame ud og otte stik, så <b>Debois–Dyrekilde</b> fik 50 og 83,3 %.',
+ '3♣ er dristigt og bygger på en god læsning af zonen: ingen er i zonen, så én ned koster 50, mindre end de 110 for en vundet 2♠. Makkers 1UT lover mindst to klør, og Ø-V er stoppet i en delkontrakt.',
+ 'Her gav det ikke gevinst. Syd har netop kun to klør, og <b>Henrichsen–Kofoed</b> fik ruder dame ud og otte stik: én ned og 16,7 %. 2♠ var også gået én ned med åbne kort, så pas havde givet 50 og 25 %.',
+ 'N-S tabte reelt spillet, da Øst meldte 2♠. De to borde, der fik lov at spille 1UT, fik 120 og 75 %. Efter 2♠ er selv en vundet 3♣ kun 50 % værd, og <b>Debois–Dyrekilde</b> fik 83,3 % som Ø-V.',
  'Toppen gik til <b>Egstrup–Veibel Petersen</b>, der satte 2♠ tre gange: 150. N-S har ni stik i sans på ethvert udspil, men med 4 HP hos Nord meldte ingen udgangen.'],
  ('Meldeforløb, Henrichsen–Kofoed N-S',['pas','pas','1♠','1UT','pas','pas','2♠','pas','pas','3♣','pas','pas','pas'])),
 (11,suits('To par i 6♥'),'+980','Top N-S',{2,6,13,3,12},[
