@@ -11,7 +11,7 @@ Søren gives you a results URL from resultater.bridge.dk for a single-evening pa
 A report has:
 
 1. Header: eyebrow line, short headline, two-sentence lede, and three cards: first place, second place, and the pair with the largest handicap gain (lowest Δ-HAC on the handicap page; lower is better).
-2. "Aftenen kort": three short paragraphs on who won and why, linking to the boards.
+2. "Aftenen kort": three short paragraphs, linking to the boards. The first sums up the evening (what the cards offered, what the room did with it); then the winners and why they won.
 3. "Nøglespil": 3 to 7 boards, each with diagram, tricks-with-open-cards table, the full results table and two to four paragraphs.
 4. "I øvrigt": one line each for good results by pairs not otherwise featured. Each board mentioned links to that board on the official site.
 5. "Slutstilling": all pairs with pair number, score, expected score from handicap, and the difference. In an indvævet Howell (see below), a paragraph above the table explains the form and names the best pair in each group.
