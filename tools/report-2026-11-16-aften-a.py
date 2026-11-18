@@ -82,10 +82,12 @@ B=[
  'N-S tabte reelt spillet, da Øst meldte 2♠. De to borde, der fik lov at spille 1UT, fik 120 og 75 %. Efter 2♠ er selv en vundet 3♣ kun 50 % værd, og <b>Debois–Dyrekilde</b> fik 83,3 % som Ø-V.',
  'Toppen gik til <b>Egstrup–Veibel Petersen</b>, der satte 2♠ tre gange: 150. N-S har ni stik i sans på ethvert udspil, men med 4 HP hos Nord meldte ingen udgangen.'],
  ('Meldeforløb, Henrichsen–Kofoed N-S',['pas','pas','1♠','1UT','pas','pas','2♠','pas','pas','3♣','pas','pas','pas'])),
-(11,suits('To par i 6♥'),'+980','Top N-S',{2,6,13,3,12},[
+(11,suits('6♥ efter 4♠'),'+980','Top N-S',{2,6,13,3,12},[
  'N-S har 28 HP og ni hjerter, og Ø-V kan kun tage spar es. Der er 12 stik i både hjerter og klør på ethvert udspil.',
- '<b>Christensen–Husted</b> og <b>Debois–Dyrekilde</b> meldte slemmen og delte toppen med 980. <b>Rosenbaum–Vainer</b> spillede 4♥ og fik klør ud i stedet for spar: 13 stik og 510.',
- 'Øst har syv spar og god grund til at melde videre. Med åbne kort går 4♠ doblet to ned for 300, billigere end N-S\'s udgang. <b>Serritzlew–Eckstrøm</b> og <b>Fardan–Nodal</b> fik lov at spille den og scorede 91,7 % som Ø-V. Mod en meldt slem kan Ø-V gå helt til 6♠: fire doblede beter koster 800.']),
+ 'Hos <b>Christensen–Husted</b> sprang Øst til 4♠ efter 1♣ og 1♥. Syds pas var en aftalt melding: femfarve i klør og minimum. Med den oplysning meldte Nord, Claus Torben Christensen, 6♣, og Syd, Camilla Husted, rettede til 6♥ med sine fire hjerter. Det gav 980 og delt top med <b>Debois–Dyrekilde</b>, der også meldte slemmen. <b>Rosenbaum–Vainer</b> spillede 4♥ og fik klør ud i stedet for spar: 13 stik og 510.',
+ 'Spillet viser to ting. N-S skal have aftaler om, hvad pas og dobling betyder, når modparten spærrer højt; uden dem må Nord gætte over 4♠. Og Ø-V skal spærre helt til tops med det samme. Øst har syv spar og en single i begge N-S\'s farver, og efter 4♠ har N-S ingen plads til at undersøge slemmen. Ved to borde blev 4♠ doblet slutkontrakten: to ned for 300, billigere end udgangen, og 91,7 % til <b>Serritzlew–Eckstrøm</b> og <b>Fardan–Nodal</b> som Ø-V.',
+ 'Med 4♠ har Øst meldt sin hånd. Vest kan overveje 6♠ over slemmen: fire doblede beter koster 800 mod 980. Men det er et desperat offer. Med 3 HP og en jævn hånd skal Vest gå ud fra, at slemmen står, at ruderne holder, og at makker er kort i klør.'],
+ ('Meldeforløb, Christensen–Husted N-S',['1♣','pas','1♥','4♠',('pas','Femfarve i klør og minimum'),'pas','6♣','pas','6♥','pas','pas','pas'])),
 (19,'Spar ud mod 6UT','+990','Top N-S',{13,12},[
  'N-S har 30 HP og 11 stik: fem klør, tre hjerter, spar es og to ruder, når esset er drevet ud. Spar konge og ruder es sidder begge hos Øst, og det tolvte stik findes ved at udnytte netop det.',
  'Nøglen er ruder 10 fra Nord. Lægger Øst lavt, vinder tieren, og ruderne giver tre stik. Dækker Øst med bonden, eller tager Øst esset, er der kun to ruderstik, men nu holder Øst alene både ruderne og spar konge. Spilfører tager spar es og spiller Nords klør til ende. På den sidste klør må Øst kaste spar konge eller sit ruderhold, og Syd kaster efter Øst. Spiller man i stedet en lille ruder til kongen, lægger Øst lavt og beholder E-B bag Syds små ruder, og så er der kun 11 stik.',
@@ -165,7 +167,7 @@ out=f'''<!doctype html>
 <li>Resultater, kortfordelinger og tabeller over stik med åbne kort kommer fra <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Danmarks Bridgeforbunds resultatside</a>. Udspilsanalyserne med åbne kort er beregnet med Dealers medfølgende solver.</li>
 <li>Spil 6 er kontrolleret ved at flytte spar konge til Vest og regne igen: stadig 12 stik. I spil 20 giver klør konge hos Vest højst 11 stik i spar og klør, når der ikke kommer trumf ud. </li>
 <li>Procenterne i spil 2 gælder fordelingen af N-S's spar og ruder; andre chancer er ikke regnet med. I spil 5 står 6♥ med åbne kort i 60 % af 1500 tilfældige fordelinger, men kun fordi spilfører kan vælge plan efter kortenes placering. Tallene i teksten gælder derfor de to beskrevne planer. Spilleplanerne i spil 5 og 19 er fulgt kort for kort med solveren mod bedste modspil.</li>
-<li>Resultatsiden har ingen meldeforløb og ingen spilleforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne, undtagen i spil 8 og 19. Meldeforløbet i spil 8 er gengivet efter hukommelsen af Ø-V. Meldinger og spil i spil 19 er oplyst af Gert Vainer; modstandernes pas er antaget.</li>
+<li>Resultatsiden har ingen meldeforløb og ingen spilleforløb. Vurderinger af meldingerne bygger alene på slutkontrakterne, undtagen i spil 8, 11 og 19. Meldeforløbet i spil 8 er gengivet efter hukommelsen af Ø-V. Meldeforløbet i spil 11 er oplyst af spillere fra begge par ved bordet. Meldinger og spil i spil 19 er oplyst af Gert Vainer; modstandernes pas er antaget.</li>
 <li>Navnene følger parrene, da resultatlisten ikke viser, hvem der sad på hvilken plads.</li>
 {suits(LEADS)}
 </ul></details>{names}
