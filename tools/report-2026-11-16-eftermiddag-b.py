@@ -163,7 +163,7 @@ out=f'''<!doctype html>
 </ul></details>{names}
 <p class="note">Danmarks Bridgeforbund: <a href="{U}resultater.php?{Q}">Resultater</a> · <a href="{U}spilresultater.php?{Q}&amp;round=1&amp;half=1">Spilresultater</a> · <a href="{U}kortfordeling.php?{Q}">Kortfordeling</a> · <a href="{U}pairhacscore.php?{Q}">Handicapscore</a> · <a href="{U}fleksibel.php?{Q}">Samlet stilling</a></p>
 </section>
-<footer><p>De samme kort blev spillet i begge rækker: <a href="{OTHER[0]}">{OTHER[1]}</a>.</p><p>{GEN} · Søren Debois, assisteret af Claude Code (Fable 5.2)</p></footer>
+<footer><p>De samme kort blev spillet i begge rækker: <a href="{OTHER[0]}">{OTHER[1]}</a>.</p><p>{GEN} · Ronny Neis, assisteret af Claude Code (Fable 5.2)</p></footer>
 </div>
 </html>
 '''
